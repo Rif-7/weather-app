@@ -12,10 +12,15 @@ async function getWeather(cityName, stateCode = "", countryCode = "") {
 }
 
 const cityNameField = document.querySelector("input");
+const dataField = document.querySelector(".data");
+const weatherField = document.querySelector(".weather-data");
+const errorField = document.querySelector(".error-data");
+
 const header = document.querySelector(".header");
 const temp = document.querySelector(".temp");
 const main = document.querySelector(".main-weather");
 const description = document.querySelector(".description");
+const extras = document.querySelector(".extras");
 const feelsLike = document.querySelector(".feels-like");
 const humidity = document.querySelector(".humidity");
 const pressure = document.querySelector(".pressure");
@@ -27,6 +32,10 @@ button.addEventListener("click", () => {
   getWeather(cityNameField.value)
     .then((result) => {
       console.log(result);
+      weatherField.style.visibility = "visible";
+      errorField.style.display = "none";
+      dataField.classList.remove("data-errored");
+
       header.textContent = result.name;
       temp.textContent = `${result.temp}°`;
       main.textContent = result.main;
@@ -39,5 +48,8 @@ button.addEventListener("click", () => {
     })
     .catch((err) => {
       console.log(new Error(err));
+      weatherField.style.visibility = "hidden";
+      errorField.style.display = "block";
+      dataField.classList.add("data-errored");
     });
 });

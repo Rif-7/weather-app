@@ -57,13 +57,27 @@ input:focus {
     width: 400px;
     border: 10px solid #3882f6;
     border-radius: 4px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     padding-top: 15px;
 }
 
-.header {
+.data-errored {
+    border: 10px solid red;
+}
+
+.weather-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    visibility: hidden;
+}
+
+.error-data {
+    display: none;
+    color: red;
+    margin-left: 10px;
+}
+
+.header, .main-error {
     font-size: 44px;
     font-weight: 700;
 }
@@ -73,7 +87,7 @@ input:focus {
     font-weight: 500;
 }
 
-.description {
+.description, .sub-error {
     font-size: 24px;
 }
 
