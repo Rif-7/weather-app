@@ -2,15 +2,6 @@ import "./style.css";
 
 const apiKey = "f011607811bd8226b53313936016eee8";
 
-async function getWeather(cityName, stateCode = "", countryCode = "") {
-  const req = `https://api.openweathermap.org/data/2.5/weather?q=${cityName},${stateCode},${countryCode}&appid=${apiKey}`;
-  const response = await fetch(req);
-  const responseJson = await response.json();
-  return Object.assign({}, responseJson.weather[0], responseJson.main, {
-    name: responseJson.name,
-  });
-}
-
 const cityNameField = document.querySelector("input");
 const dataField = document.querySelector(".data");
 const weatherField = document.querySelector(".weather-data");
@@ -20,7 +11,6 @@ const header = document.querySelector(".header");
 const temp = document.querySelector(".temp");
 const main = document.querySelector(".main-weather");
 const description = document.querySelector(".description");
-const extras = document.querySelector(".extras");
 const feelsLike = document.querySelector(".feels-like");
 const humidity = document.querySelector(".humidity");
 const pressure = document.querySelector(".pressure");
@@ -53,3 +43,15 @@ button.addEventListener("click", () => {
       dataField.classList.add("data-errored");
     });
 });
+
+async function getWeather(cityName, stateCode = "", countryCode = "") {
+  if (!cityName) {
+    return Promise.reject("Must provide a city name");
+  }
+  const req = `https://api.openweathermap.org/data/2.5/weather?q=${cityName},${stateCode},${countryCode}&appid=${apiKey}`;
+  const response = await fetch(req);
+  const responseJson = await response.json();
+  return Object.assign({}, responseJson.weather[0], responseJson.main, {
+    name: responseJson.name,
+  });
+}
