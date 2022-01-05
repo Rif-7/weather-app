@@ -26,7 +26,7 @@ button.addEventListener("click", () => {
   getWeather(cityNameField.value)
     .then((result) => {
       console.log(result);
-      weatherField.style.visibility = "visible";
+      weatherField.style.opacity = 1;
       errorField.style.display = "none";
       loadingField.style.display = "none";
       dataField.classList.remove("data-errored");
@@ -53,8 +53,9 @@ button.addEventListener("click", () => {
     })
     .catch((err) => {
       console.log(new Error(err));
-      weatherField.style.visibility = "hidden";
+      weatherField.style.opacity = 0;
       errorField.style.display = "block";
+      loadingField.style.display = "none";
       dataField.classList.add("data-errored");
     });
 });
@@ -78,7 +79,8 @@ async function getWeather(cityName, stateCode = "", countryCode = "") {
   }
 
   loadingField.style.display = "block";
-  weatherField.style.visibility = "hidden";
+  weatherField.style.opacity = 0;
+  errorField.style.display = "none";
   const req = `https://api.openweathermap.org/data/2.5/weather?q=${cityName},${stateCode},${countryCode}&appid=${apiKey}`;
   const response = await fetch(req);
   const responseJson = await response.json();
