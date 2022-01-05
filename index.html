@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<script defer src="main.bundle.js"></script></head>
+<body>
+    <div class="form-field">
+        <form>
+            <input type="text" placeholder="City Name">
+            <button type="button" class="search-btn">Go</button>
+        </form>
+    </div>
+
+    <div class="data">
+        <div class="loading">Loading...</div>
+        
+        <div class="error-data">
+            <div class="main-error">ERROR!</div>
+            <div class="sub-error">
+                City Not Found
+            </div>
+        </div>
+
+        <div class="weather-data">
+            <div class="header"></div>
+            <div class="temp"></div>
+            <div class="main-weather"></div>
+            <div class="description"></div>
+            <div class="extras">
+                <div class="section">
+                    <div class="section-item">
+                        <label>Feels Like</label>
+                        <div class="feels-like value"></div>
+                    </div>
+                    <div class="section-item">
+                        <label>Humidity</label>
+                        <div class="humidity value"></div>
+                    </div>
+                    <div class="section-item">
+                        <label>Pressure</label>
+                        <div class="pressure value"></div>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="section">
+                    <div class="section-item">
+                        <label>Min Temp</label>
+                        <div class="min-temp value"></div>
+                    </div>
+                    <div class="section-item">
+                        <label>Max Temp</label>
+                        <div class="max-temp value"></div>
+                    </div>
+                </div>
+            </div>
+            <button class="change-unit">To °C</button>
+        </div>
+    </div>
+
+</body>
+</html>
