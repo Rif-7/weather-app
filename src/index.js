@@ -31,13 +31,13 @@ button.addEventListener("click", () => {
       loadingField.style.display = "none";
       dataField.classList.remove("data-errored");
 
-      fahrenheitVals = [
+      celciusVals = [
         result.temp,
         result.temp_min,
         result.temp_max,
         result.feels_like,
       ];
-      celciusVals = [...convertToCelcius(fahrenheitVals)];
+      fahrenheitVals = [...convertToFahrenheit(celciusVals)];
 
       if (currentUnit === "F") {
         addTempToDom(...fahrenheitVals);
@@ -81,7 +81,7 @@ async function getWeather(cityName, stateCode = "", countryCode = "") {
   loadingField.style.display = "block";
   weatherField.style.opacity = 0;
   errorField.style.display = "none";
-  const req = `https://api.openweathermap.org/data/2.5/weather?q=${cityName},${stateCode},${countryCode}&appid=${apiKey}`;
+  const req = `https://api.openweathermap.org/data/2.5/weather?q=${cityName},${stateCode},${countryCode}&units=metric&appid=${apiKey}`;
   const response = await fetch(req);
   const responseJson = await response.json();
   return Object.assign({}, responseJson.weather[0], responseJson.main, {
@@ -89,9 +89,9 @@ async function getWeather(cityName, stateCode = "", countryCode = "") {
   });
 }
 
-function convertToCelcius(values) {
+function convertToFahrenheit(values) {
   return values.map((value) => {
-    return (((value - 32) * 5) / 9).toFixed(2);
+    return ((value * 9) / 5 + 32).toFixed(2);
   });
 }
 
